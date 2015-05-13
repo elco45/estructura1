@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include "tdalist.h"
 #include "linkedlist.h"
+#include "fsarraylist.h"
 #include "integer.h"
 
 using namespace std;
@@ -23,7 +24,7 @@ int main(int argc, char *argv[])
 {
     // En el caso de que quisieramos utilizar otra implementación
     // SÓLO se tendría que cambiar esta línea.
-    TDAList* lista = new LinkedList();
+    TDAList* lista = new FSArrayList(5);
     Integer* intTemp;
     int val, pos;
     bool flag = true;
