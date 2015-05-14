@@ -47,6 +47,8 @@ bool DLCursorList::insert(Object* E, int pos) {
 			rows[rows[neo]->next]->prev=neo;
 		}
 	}
+	size++;
+	return true;
 
 
 }
@@ -57,6 +59,40 @@ Object* DLCursorList::get(unsigned pos)const {
 
 }
 bool DLCursorList::erase(unsigned pos) {
+	if(pos<0||p>=size){
+		return false;
+	}
+	Object* retval;
+	int tmp;
+	if(pos==0){
+		tmp=rows[head]->next;
+		rows[head]->next=-1;
+		retval=rows[head]->data;
+		rows[head]->data=NULL;
+	}else if(pos==size-1){
+		tmp=head;
+		for (int i = 1; i < pos; i++){
+			tmp=rows[tmp]->next;
+		}
+		int eliminar=rows[tmp]->next;
+		rows[tmp]->next=-1;
+		rows[eliminar]->prev=-1;
+		delete[] row[eliminar];
+	}else{
+		tmp=head;
+		for (int i = 0; i < pos; i++){
+			tmp=rows[tmp]->next;
+		}
+		int eliminar=rows[tmp]->next;
+		rows[tmp]->next=rows[rows[tmp]->next]->next;
+		rows[rows[tmp]->next]->prev=tmp;
+		rows[eliminar]->next=-1;
+		rows[eliminar]->prev=-1;
+		retval=rows[eliminar]->data;
+		delete[] rows[eliminar];
+	}
+	size--;
+	return retval;
 
 }
 int DLCursorList::prev(int pos) const {
