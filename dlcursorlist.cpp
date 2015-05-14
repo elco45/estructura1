@@ -5,11 +5,49 @@ using namespace std;
 
 DLCursorList::DLCursorList(int capacity){
 	this->capacity=capacity;
-}
-DLCursorList::~DLCursorList(){
+	rows=new Row[capacity];
+	if(!rows){
+		throw "NO hay memoria";
+	}
+	head=-1;
 
 }
+DLCursorList::~DLCursorList(){
+	delete rows;
+}
 bool DLCursorList::insert(Object* E, int pos) {
+	if(pos<0||pos>size){
+		return false;
+	}
+	if(size==capacity){
+		return false;
+	}
+	int neo= avail();
+	if(head==-1){
+		head=neo;
+		rows[head]->prev=-1;
+		rows[head]->next=-1;
+		rows[head]->data=E;
+	}else if(pos==0&&head!=-1){
+		rows[neo]->prev=-1;
+		rows[neo]->next=head;
+		rows[head]->prev=neo;
+		head=neo;
+		rows[head].data=E;
+	}else{
+		int tmp=head;
+		for (int i = 0; i < pos; i++){
+			tmp=rows[tmp]->next;
+		}
+		rows[neo]->prev=tmp;
+		rows[neo]->next=rows[tmp]->next;
+		rows[neo]->data=E;
+		rows[tmp]->next=neo;
+		if(pos<size){
+			rows[rows[neo]->next]->prev=neo;
+		}
+	}
+
 
 }
 int DLCursorList::indexOf(Object* E)const {
@@ -44,4 +82,12 @@ bool DLCursorList::isFull()const {
 }
 int DLCursorList::getCapacity()const{
 	return capacity;
+}
+int DLCursorList::avail(){
+	int retval;
+	for(retval=0; retval<capacity; retval++){
+		if(!rows[retval]->data)
+			break;
+		return retval;
+	}
 }
