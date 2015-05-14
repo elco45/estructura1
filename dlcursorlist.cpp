@@ -53,9 +53,26 @@ bool DLCursorList::insert(Object* E, int pos) {
 
 }
 int DLCursorList::indexOf(Object* E)const {
+	int tmp=head;
+	for (int i = 0; i < size; ++i){
+		if(rows[tmp]->data->equals(E)){
+			return i;
+		}else{
+			tmp=rows[tmp]->next;
+		}
+	}
+	return -1;
 
 }
 Object* DLCursorList::get(unsigned pos)const {
+	if(pos<0||pos>=size){
+		return NULL;
+	}
+	int tmp=head;
+	for (int i = 0; i < pos; ++i){
+		tmp=rows[tmp]->next;
+	}
+	return rows[tmp]->data;
 
 }
 bool DLCursorList::erase(unsigned pos) {
@@ -102,18 +119,35 @@ int DLCursorList::next(int pos) const {
 	return pos+1;
 }
 void DLCursorList::reset() {
-
+	size=0;
 }
 Object* DLCursorList::first()const {
+	if(head!=-1){
+		return rows[head]->data;
+	}
+	return NULL;
 
 }
 Object* DLCursorList::last()const {
-
+	if(size!=0){
+		int tmp;
+		for (int i = 0; i < size; ++i){
+			if(rows[i]){
+				tmp=i;
+			}
+		}
+		return rows[tmp]->data;
+	}
 }
 void DLCursorList::print()const {
+	cout<<"Holaa"<<endl;
 
 }
 bool DLCursorList::isFull()const {
+	if(size==capacity){
+		return true;
+	}
+	return false;
 
 }
 int DLCursorList::getCapacity()const{
