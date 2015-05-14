@@ -3,6 +3,7 @@
 #include "tdalist.h"
 #include "linkedlist.h"
 #include "fsarraylist.h"
+#include "dlcursorlist.h"
 #include "integer.h"
 
 using namespace std;
@@ -24,7 +25,7 @@ int main(int argc, char *argv[])
 {
     // En el caso de que quisieramos utilizar otra implementación
     // SÓLO se tendría que cambiar esta línea.
-    TDAList* lista = new FSArrayList(5);
+    TDAList* lista = new DLCursorList(5);
     Integer* intTemp;
     int val, pos;
     bool flag = true;
