@@ -5,6 +5,9 @@
 #include "fsarraylist.h"
 #include "dlcursorlist.h"
 #include "integer.h"
+#include <ctime>
+#include <stdio.h>
+#include <cstlib>
 
 using namespace std;
 
@@ -21,8 +24,8 @@ using namespace std;
 
 int menu();
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]){
+  /*
     // En el caso de que quisieramos utilizar otra implementación
     // SÓLO se tendría que cambiar esta línea.
     TDAList* lista = new DLCursorList(5);
@@ -67,7 +70,9 @@ int main(int argc, char *argv[])
         }
     }
     delete lista;
+    */
 
+     
     return 0;
 }
 int menu()

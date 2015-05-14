@@ -148,9 +148,9 @@ void DLCursorList::print()const {
 	Object* temp;
 	for (int i = 0; i < size; ++i){
 		//cout<<rows[tmp].data<<endl;
-		temp=rows[tmp].data;
+		temp=rows[i].data;
 		cout<<temp<<endl;
-		tmp=rows[tmp].next;
+		tmp=rows[i].next;
 	}
 }
 bool DLCursorList::isFull()const {
