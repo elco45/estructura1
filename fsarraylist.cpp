@@ -22,16 +22,12 @@ bool FSArrayList::insert(Object* E,int p){
 	}
 	if (p<0||p>size){
 		return false;
-	//if (p!=size){
 	}else{
 		for (int i = size; i >p; i--){
 			data[i]=data[i-1];
 		}
 		data[p]=E;
 	}
-	/*if ((p==0&&size==0)||p==size){
-		data[p]=E;
-	}*/
 	size++;
 	return true;
 }
