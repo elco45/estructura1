@@ -7,7 +7,7 @@ using namespace std;
 
 DLCursorList::DLCursorList(int capacity){
 	this->capacity=capacity;
-	rows=new Row[capacity];
+	rows=new Row*[capacity];
 	if(!rows){
 		throw "NO hay memoria";
 	}
@@ -27,26 +27,26 @@ bool DLCursorList::insert(Object* E, int pos) {
 	int neo= avail();
 	if(head==-1){
 		head=neo;
-		rows[head].prev=-1;
-		rows[head].next=-1;
-		rows[head].data=E;
+		rows[head]->prev=-1;
+		rows[head]->next=-1;
+		rows[head]->data=E;
 	}else if(pos==0&&head!=-1){
-		rows[neo].prev=-1;
-		rows[neo].next=head;
-		rows[head].prev=neo;
+		rows[neo]->prev=-1;
+		rows[neo]->next=head;
+		rows[head]->prev=neo;
 		head=neo;
-		rows[head].data=E;
+		rows[head]->data=E;
 	}else{
 		int tmp=head;
 		for (int i = 0; i < pos; i++){
-			tmp=rows[tmp].next;
+			tmp=rows[tmp]->next;
 		}
-		rows[neo].prev=tmp;
-		rows[neo].next=rows[tmp].next;
-		rows[neo].data=E;
-		rows[tmp].next=neo;
+		rows[neo]->prev=tmp;
+		rows[neo]->next=rows[tmp]->next;
+		rows[neo]->data=E;
+		rows[tmp]->next=neo;
 		if(pos<size){
-			rows[rows[neo].next].prev=neo;
+			rows[rows[neo]->next]->prev=neo;
 		}
 	}
 	size++;
@@ -57,10 +57,10 @@ bool DLCursorList::insert(Object* E, int pos) {
 int DLCursorList::indexOf(Object* E)const {
 	int tmp=head;
 	for (int i = 0; i < size; ++i){
-		if(rows[tmp].data->equals(E)){
+		if(rows[tmp]->data->equals(E)){
 			return i;
 		}else{
-			tmp=rows[tmp].next;
+			tmp=rows[tmp]->next;
 		}
 	}
 	return -1;
@@ -72,9 +72,9 @@ Object* DLCursorList::get(unsigned pos)const {
 	}
 	int tmp=head;
 	for (int i = 0; i < pos; ++i){
-		tmp=rows[tmp].next;
+		tmp=rows[tmp]->next;
 	}
-	return rows[tmp].data;
+	return rows[tmp]->data;
 
 }
 bool DLCursorList::erase(unsigned pos) {
@@ -84,30 +84,30 @@ bool DLCursorList::erase(unsigned pos) {
 	Object* retval;
 	int tmp;
 	if(pos==0){
-		tmp=rows[head].next;
-		rows[head].next=-1;
-		retval=rows[head].data;
-		rows[head].data=NULL;
+		tmp=rows[head]->next;
+		rows[head]->next=-1;
+		retval=rows[head]->data;
+		rows[head]->data=NULL;
 	}else if(pos==size-1){
 		tmp=head;
 		for (int i = 1; i < pos; i++){
-			tmp=rows[tmp].next;
+			tmp=rows[tmp]->next;
 		}
-		int eliminar=rows[tmp].next;
-		rows[tmp].next=-1;
-		rows[eliminar].prev=-1;
+		int eliminar=rows[tmp]->next;
+		rows[tmp]->next=-1;
+		rows[eliminar]->prev=-1;
 		//delete rows[eliminar];
 	}else{
 		tmp=head;
 		for (int i = 0; i < pos; i++){
-			tmp=rows[tmp].next;
+			tmp=rows[tmp]->next;
 		}
-		int eliminar=rows[tmp].next;
-		rows[tmp].next=rows[rows[tmp].next].next;
-		rows[rows[tmp].next].prev=tmp;
-		rows[eliminar].next=-1;
-		rows[eliminar].prev=-1;
-		retval=rows[eliminar].data;
+		int eliminar=rows[tmp]->next;
+		rows[tmp]->next=rows[rows[tmp]->next]->next;
+		rows[rows[tmp]->next]->prev=tmp;
+		rows[eliminar]->next=-1;
+		rows[eliminar]->prev=-1;
+		retval=rows[eliminar]->data;
 		//delete rows[eliminar];
 	}
 	size--;
@@ -125,7 +125,7 @@ void DLCursorList::reset() {
 }
 Object* DLCursorList::first()const {
 	if(head!=-1){
-		return rows[head].data;
+		return rows[head]->data;
 	}
 	return NULL;
 
@@ -140,7 +140,7 @@ Object* DLCursorList::last()const {
 		}
 		return rows[tmp].data;
 	}*/
-	return NULL;
+	return rows[size-1]->data;
 }
 void DLCursorList::print()const {
 	//cout<<"Holaa"<<endl;
@@ -148,9 +148,9 @@ void DLCursorList::print()const {
 	Object* temp;
 	for (int i = 0; i < size; ++i){
 		//cout<<rows[tmp].data<<endl;
-		temp=rows[i].data;
+		temp=rows[i]->data;
 		cout<<temp<<endl;
-		tmp=rows[i].next;
+		tmp=rows[i]->next;
 	}
 }
 bool DLCursorList::isFull()const {
@@ -166,7 +166,7 @@ int DLCursorList::getCapacity()const{
 int DLCursorList::avail(){
 	int retval;
 	for(retval=0; retval<capacity; retval++){
-		if(!rows[retval].data)
+		if(!rows[retval]->data)
 			break;
 		return retval;
 	}

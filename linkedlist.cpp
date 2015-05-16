@@ -104,18 +104,23 @@ Object* LinkedList::get(unsigned index)const {
 */
 bool LinkedList::erase(unsigned pos) {
     // Si es una posición Inválida
-    if (pos < 0 || pos >= size)
+    if (pos < 0 || pos >= size||size==0)
         return false; // Indicar fracaso en la operación
     DLLNode* tmp;
     if (pos == 0){ // Desea Borrar la Cabeza
         // Desenlazar
-        tmp = head->getNext();
-        tmp->setPrev(NULL);
-        head->setNext(NULL);
-        // Liberar Memoria
-        delete head;
-        // Actualizar head
-        head = tmp;
+        if(size==1){
+             delete head;
+
+        }else{
+            tmp = head->getNext();
+            tmp->setPrev(NULL);
+            head->setNext(NULL);
+            // Liberar Memoria
+            delete head;
+            // Actualizar head
+            head = tmp;
+        }
     }else if (pos == size - 1){ // Desea Borrar el último
         // Recorrer hasta el final
         tmp = head;
@@ -175,7 +180,7 @@ Object* LinkedList::last()const {
     if (!head)
         return NULL;
     DLLNode* tmp = head;
-    for (int i=0; i < size; i++)
+    for (int i=0; i < size-1; i++)
         tmp = tmp->getNext();
     return tmp->getData();
 }
