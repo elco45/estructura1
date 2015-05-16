@@ -15,7 +15,7 @@ class DLCursorList:public TDAList{
         }*/
 	};
 	int head,cola, proximo;
-	Row* rows;
+	Row** rows;
 	int capacity;
     int avail();
 public:
