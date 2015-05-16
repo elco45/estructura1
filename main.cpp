@@ -86,7 +86,7 @@ int main(int argc, char *argv[]){
 
   f5.close();
   ofstream f6("FSLast.txt");
-   //funcion last de FSArrayList
+   //funcion last de FSArrayList funcion las ha sido modificada
   for (int i = 0; i <5; ++i){ 
     inicio=clock(); 
     lista1->last();
