@@ -7,7 +7,8 @@
 
 class DLCursorList:public TDAList{
 	struct Row{
-		int prev,next;
+		int prev;
+        int next;
         Object* data;
 	};
 	int head,capacity;
@@ -28,5 +29,6 @@ public:
     virtual bool isFull()const ;
     virtual int getCapacity()const;
     int nextavail();
+
 };
 #endif
