@@ -7,47 +7,71 @@ using namespace std;
 
 DLCursorList::DLCursorList(int capacity){
 	this->capacity=capacity;
-	rows=new Row*[capacity];
+	rows=new Row*[this->capacity];
 	if(!rows){
 		throw "NO hay memoria";
 	}
-	head=-1;
+	this->head=-1;
 
 }
 DLCursorList::~DLCursorList(){
 	delete rows;
 }
 bool DLCursorList::insert(Object* E, int pos) {
+	cout<<"entro"<<endl;
+	
 	if(pos<0||pos>size){
 		return false;
 	}
+	cout<<"entro 1,4"<<endl;
 	if(size==capacity){
 		return false;
 	}
-	int neo= avail();
+	cout<<"entro 1.9"<<endl;
+	int neo = avail();
+	cout<<"entro 2 "<<endl;
 	if(head==-1){
-		head=neo;
-		rows[head]->prev=-1;
-		rows[head]->next=-1;
-		rows[head]->data=E;
+		Row* elemento=new Row(E);
+		cout<<" 1 "<<endl;
+		this->head=neo;
+		rows[head]=elemento;
+		cout<<"fin"<<endl;
 	}else if(pos==0&&head!=-1){
-		rows[neo]->prev=-1;
-		rows[neo]->next=head;
+		cout<<"entro 3 "<<endl;
+		Row* elemento=new Row(E);
+		elemento->next=head;
 		rows[head]->prev=neo;
 		head=neo;
-		rows[head]->data=E;
+		rows[head]=elemento;
 	}else{
+		cout<<"entro 4"<<endl;
+		Row* elemento=new Row(E);
 		int tmp=head;
-		for (int i = 0; i < pos; i++){
+		if(neo==size){
+			for (int i = 0; i < pos-1; i++){
+				tmp=rows[tmp]->next;
+			}
+			
+
+		}
+		for (int i = 0; i < pos-1; i++){
 			tmp=rows[tmp]->next;
 		}
-		rows[neo]->prev=tmp;
-		rows[neo]->next=rows[tmp]->next;
-		rows[neo]->data=E;
+
+		cout<<"paso for "<<endl;
+		elemento->prev=tmp;
+		//rows[neo]->prev=tmp;
+		cout<<"sub1"<<endl;
+		elemento->next=rows[tmp]->next;
+		cout<<"sub2 "<<endl;
+		rows[rows[tmp]->next]->prev=neo;
+		cout<<"sub3"<<endl;
 		rows[tmp]->next=neo;
-		if(pos<size){
+		cout<<"vamos a lo ultimo"<<endl;
+		rows[neo]=elemento;
+		/*if(pos<size){
 			rows[rows[neo]->next]->prev=neo;
-		}
+		}*/
 	}
 	size++;
 	return true;
@@ -67,6 +91,7 @@ int DLCursorList::indexOf(Object* E)const {
 
 }
 Object* DLCursorList::get(unsigned pos)const {
+
 	if(pos<0||pos>=size){
 		return NULL;
 	}
@@ -164,10 +189,15 @@ int DLCursorList::getCapacity()const{
 	return capacity;
 }
 int DLCursorList::avail(){
-	int retval;
+	cout<<"entro a avail"<<endl;
+	int retval=0;
 	for(retval=0; retval<capacity; retval++){
-		if(!rows[retval]->data)
+	
+		if(rows[retval]==NULL){
 			break;
-		return retval;
+				
+		}
 	}
+	cout<<"rompe "<<retval<<endl;
+	return retval;
 }

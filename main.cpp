@@ -174,6 +174,75 @@ int main(int argc, char *argv[]){
     f8<<tiempo<<"\n";
   }
   f8.close();
+  //**************************************************************************************8
+  cout<<"Comiezo de cursorlist"<<endl;
+  ofstream f13("CLnsert.txt");
+  for (int i = 0; i <5; i++){ 
+    inicio=clock(); 
+    lista3->insert(new Integer(i),i);
+    cout<<"supaso insert"<<endl;
+    fin=clock();
+    tiempo=(double)(fin-inicio)/(double)CLOCKS_PER_SEC;
+    f13<<tiempo<<"\n";
+  }
+  cout<<"paso 1"<<endl;
+  f13.close();
+  ofstream f14("CLget.txt");
+   //funcion get de cursorlist
+  for (int i = 0; i <5; i++){ 
+    inicio=clock(); 
+    lista3->get(i);
+    fin=clock();
+    tiempo=(double)(fin-inicio)/(double)CLOCKS_PER_SEC;
+    f14<<tiempo<<"\n";
+  }
+  cout<<"paso 2"<<endl;
+  f14.close();
+  ofstream f15("CLInfex.txt");
+   //funcion indexof de cursorlist
+  for (int i = 0; i <5; ++i){ 
+    inicio=clock(); 
+    lista3->indexOf(new Integer(i));
+    fin=clock();
+    tiempo=(double)(fin-inicio)/(double)CLOCKS_PER_SEC;
+    f15<<tiempo<<"\n";
+  }
+  cout<<"paso 3"<<endl;
+  f15.close();
+  ofstream f16("CLFirst.txt");
+   //funcion fisrt de cursorlist
+  for (int i = 0; i <5; ++i){ 
+    inicio=clock(); 
+    lista3->first();
+    fin=clock();
+    tiempo=(double)(fin-inicio)/(double)CLOCKS_PER_SEC;
+    f16<<tiempo<<"\n";
+  }
+  cout<<"paso 3"<<endl;
+  f16.close();
+  ofstream f17("CLLast.txt");
+   //funcion last de cursorlist
+  for (int i = 0; i <5; ++i){ 
+    inicio=clock(); 
+    lista3->last();
+    fin=clock();
+    tiempo=(double)(fin-inicio)/(double)CLOCKS_PER_SEC;
+    f17<<tiempo<<"\n";
+  }
+  cout<<"paso 4"<<endl;
+  f17.close();
+  ofstream f18("CLRemove.txt");
+   //funcion remove de cursorlist
+  for (int i = 0; i <5; ++i){ 
+    inicio=clock();
+    lista3->erase(0);
+    cout<<"subpaso"<<endl;
+    fin=clock();
+    tiempo=(double)(fin-inicio)/(double)CLOCKS_PER_SEC;
+    f18<<tiempo<<"\n";
+  }
+ 
+  f18.close();
 
   /*
     // En el caso de que quisieramos utilizar otra implementación
