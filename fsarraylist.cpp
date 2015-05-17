@@ -13,22 +13,24 @@ FSArrayList::~FSArrayList(){
 	for (int i = 0; i < size; i++){
 		delete data[i];
 	}
-	delete data;
+	delete[] data;
 }
 
 bool FSArrayList::insert(Object* E,int p){
-	if (isFull()){
-		return false;
-	}
 	if (p<0||p>=capacity){
 		return false;
 	}else{
-		for (int i = size; i >p; i--){
-			data[i]=data[i-1];
+		if(p >=size ){
+			data[size] = E;
+			size++;
+		}else{
+			for (int i = size; i > p; i--){
+				data[i] = data[i-1];
+			}
+			data[p] = E;
+			size++;
 		}
-		data[p]=E;
 	}
-	size++;
 	return true;
 }
 

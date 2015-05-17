@@ -26,7 +26,7 @@ LinkedList::~LinkedList(){
 */
 bool LinkedList::insert(Object* data, int pos) {
     // Si se desa meter en una posición inválida
-    if (pos < 0 || pos > size)
+    if (pos < 0 )
         return false; // Fracaso en esta Operación
 
     // Creación del Nodo que insertaremos en la lista
