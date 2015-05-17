@@ -17,10 +17,10 @@ FSArrayList::~FSArrayList(){
 }
 
 bool FSArrayList::insert(Object* E,int p){
-	if (size==capacity){
+	if (isFull()){
 		return false;
 	}
-	if (p<0||p>size){
+	if (p<0||p>=capacity){
 		return false;
 	}else{
 		for (int i = size; i >p; i--){

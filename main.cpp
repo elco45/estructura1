@@ -33,6 +33,8 @@ int main(int argc, char *argv[]){
   ofstream f17("CLfirst.txt");
   ofstream f18("CLlast.txt");
   **/
+
+/*
   double tiempo;
   time_t inicio,fin;
  // srand(time(0));
@@ -174,8 +176,8 @@ int main(int argc, char *argv[]){
     f8<<tiempo<<"\n";
   }
   f8.close();
-
-  /*
+*/
+  
     // En el caso de que quisieramos utilizar otra implementación
     // SÓLO se tendría que cambiar esta línea.
     TDAList* lista = new DLCursorList(5);
@@ -220,7 +222,7 @@ int main(int argc, char *argv[]){
         }
     }
     delete lista;
-    */
+    
 
      
     return 0;
