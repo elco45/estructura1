@@ -7,17 +7,37 @@ using namespace std;
 
 DLCursorList::DLCursorList(int capacity){
 	this->capacity=capacity;
+<<<<<<< HEAD
 	rows=new Row*[this->capacity];
 	if(!rows){
 		throw "NO hay memoria";
 	}
 	this->head=-1;
+=======
+	rows=new Row[capacity];
+	size=0;
+	if(!rows){
+		throw "NO hay memoria";
+	}
+	for (int i = 0; i < capacity; i++){
+		rows[i].prev=-1;
+		rows[i].data=NULL;
+		rows[i].next=-1;
+	}
+	head=-1;
+>>>>>>> 88df29fe9bc9c784653173688986898f9fefa3c4
 
 }
 DLCursorList::~DLCursorList(){
-	delete rows;
+	int tmp=head;
+	for (int i = 0; i < size; i++){
+		delete rows[tmp].data;
+		tmp=rows[tmp].next;
+	}
+	delete[] rows;
 }
 bool DLCursorList::insert(Object* E, int pos) {
+<<<<<<< HEAD
 	cout<<"entro"<<endl;
 	
 	if(pos<0||pos>size){
@@ -72,112 +92,143 @@ bool DLCursorList::insert(Object* E, int pos) {
 		/*if(pos<size){
 			rows[rows[neo]->next]->prev=neo;
 		}*/
+=======
+	if(pos<0||pos>=capacity){
+		return false;
+	}
+	if(isFull()){
+		return false;
+	}
+	int neo= nextavail();
+	if(pos==0 && head==-1){
+		head=neo;
+		rows[head].prev=-1;
+		rows[head].next=-1;
+		rows[head].data=E;
+	}else if(pos==0 && head!=-1){
+		rows[neo].prev=-1;
+		rows[neo].next=head;
+		rows[head].prev=neo;
+		head=neo;
+		rows[neo].data=E;
+	}else{
+		int tmp = head;
+	
+		for (int i = 0; i < pos-1; i++){
+			tmp = rows[tmp].next;
+		}
+	
+		rows[neo].prev = tmp;
+		rows[neo].next = rows[tmp].next;
+		rows[neo].data = E;
+		rows[tmp].next=neo;
+		if(pos < size){
+			rows[rows[neo].next].prev = neo;
+		}
+>>>>>>> 88df29fe9bc9c784653173688986898f9fefa3c4
 	}
 	size++;
 	return true;
-
-
 }
+
 int DLCursorList::indexOf(Object* E)const {
 	int tmp=head;
 	for (int i = 0; i < size; ++i){
-		if(rows[tmp]->data->equals(E)){
+		if(rows[tmp].data->equals(E)){
 			return i;
 		}else{
-			tmp=rows[tmp]->next;
+			tmp=rows[tmp].next;
 		}
 	}
 	return -1;
-
 }
+
 Object* DLCursorList::get(unsigned pos)const {
+<<<<<<< HEAD
 
 	if(pos<0||pos>=size){
+=======
+	if(pos<0||size==0){
+>>>>>>> 88df29fe9bc9c784653173688986898f9fefa3c4
 		return NULL;
 	}
 	int tmp=head;
 	for (int i = 0; i < pos; ++i){
-		tmp=rows[tmp]->next;
+		tmp=rows[tmp].next;
 	}
-	return rows[tmp]->data;
-
+	return rows[tmp].data;
 }
+
 bool DLCursorList::erase(unsigned pos) {
 	if(pos<0||pos>=size){
 		return false;
 	}
 	Object* retval;
-	int tmp;
+	int tmp,neo;
 	if(pos==0){
-		tmp=rows[head]->next;
-		rows[head]->next=-1;
-		retval=rows[head]->data;
-		rows[head]->data=NULL;
-	}else if(pos==size-1){
 		tmp=head;
-		for (int i = 1; i < pos; i++){
-			tmp=rows[tmp]->next;
-		}
-		int eliminar=rows[tmp]->next;
-		rows[tmp]->next=-1;
-		rows[eliminar]->prev=-1;
-		//delete rows[eliminar];
+		retval=rows[head].data;
+		head=rows[head].next;
+		rows[tmp].prev = -1;
+		rows[tmp].data = NULL;
+		rows[tmp].next = -1;
+		rows[head].prev = -1;
 	}else{
-		tmp=head;
-		for (int i = 0; i < pos; i++){
-			tmp=rows[tmp]->next;
+		tmp = head;
+		for(int i =0 ; i < pos-1; i++){
+			tmp = rows[tmp].next;
 		}
-		int eliminar=rows[tmp]->next;
-		rows[tmp]->next=rows[rows[tmp]->next]->next;
-		rows[rows[tmp]->next]->prev=tmp;
-		rows[eliminar]->next=-1;
-		rows[eliminar]->prev=-1;
-		retval=rows[eliminar]->data;
-		//delete rows[eliminar];
+		neo = rows[tmp].next;
+		retval = rows[neo].data;
+		rows[tmp].next = rows[neo].next;
+		rows[rows[neo].next].prev = tmp;
 	}
 	size--;
-	return retval;
+	return true;
+
 
 }
+
 int DLCursorList::prev(int pos) const {
 	return pos-1;
 }
+
 int DLCursorList::next(int pos) const {
 	return pos+1;
 }
+
 void DLCursorList::reset() {
 	size=0;
 }
+
 Object* DLCursorList::first()const {
 	if(head!=-1){
-		return rows[head]->data;
+		return rows[head].data;
 	}
 	return NULL;
+}
 
-}
 Object* DLCursorList::last()const {
-	/*if(size!=0){
-		int tmp;
-		for (int i = 0; i < size; ++i){
-			if(rows[i]!=NULL){
-				tmp=i;
-			}
-		}
-		return rows[tmp].data;
-	}*/
-	return rows[size-1]->data;
+	int tmp = head;
+	int cont = 0;
+	do{
+		tmp = rows[tmp].next;
+		cont++;
+	}while(cont<size);
+	return rows[tmp].data;
 }
+
 void DLCursorList::print()const {
-	//cout<<"Holaa"<<endl;
 	int tmp=head;
-	Object* temp;
-	for (int i = 0; i < size; ++i){
-		//cout<<rows[tmp].data<<endl;
-		temp=rows[i]->data;
-		cout<<temp<<endl;
-		tmp=rows[i]->next;
+	int cont = 0;
+	for (int i = 0; i <size; i++){
+		rows[tmp].data->print();
+		tmp = rows[tmp].next;
 	}
+		
+	
 }
+
 bool DLCursorList::isFull()const {
 	if(size==capacity){
 		return true;
@@ -185,9 +236,11 @@ bool DLCursorList::isFull()const {
 	return false;
 
 }
+
 int DLCursorList::getCapacity()const{
 	return capacity;
 }
+<<<<<<< HEAD
 int DLCursorList::avail(){
 	cout<<"entro a avail"<<endl;
 	int retval=0;
@@ -201,3 +254,13 @@ int DLCursorList::avail(){
 	cout<<"rompe "<<retval<<endl;
 	return retval;
 }
+=======
+
+int DLCursorList::nextavail(){
+	for(int i=0; i<capacity; i++){
+		if(rows[i].data==NULL && rows[i].prev==-1 && rows[i].next==-1){
+			return i;
+		}
+	}
+}
+>>>>>>> 88df29fe9bc9c784653173688986898f9fefa3c4

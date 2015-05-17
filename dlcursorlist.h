@@ -10,6 +10,7 @@ class DLCursorList:public TDAList{
 		int prev;
         int next;
         Object* data;
+<<<<<<< HEAD
       Row(Object* E){
             prev=-1;
             next=-1;
@@ -20,6 +21,11 @@ class DLCursorList:public TDAList{
 	int head,cola, proximo;
 	Row** rows;
 	int capacity;
+=======
+	};
+	int head,capacity;
+	Row* rows;
+>>>>>>> 88df29fe9bc9c784653173688986898f9fefa3c4
 public:
 	DLCursorList(int);
 	virtual ~DLCursorList();
@@ -35,8 +41,12 @@ public:
     virtual void print()const ;
     virtual bool isFull()const ;
     virtual int getCapacity()const;
+<<<<<<< HEAD
     virtual int avail();
 
 
+=======
+    int nextavail();
+>>>>>>> 88df29fe9bc9c784653173688986898f9fefa3c4
 };
 #endif

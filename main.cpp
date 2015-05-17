@@ -33,6 +33,8 @@ int main(int argc, char *argv[]){
   ofstream f17("CLfirst.txt");
   ofstream f18("CLlast.txt");
   **/
+
+/*
   double tiempo;
   time_t inicio,fin;
  // srand(time(0));
@@ -174,6 +176,7 @@ int main(int argc, char *argv[]){
     f8<<tiempo<<"\n";
   }
   f8.close();
+<<<<<<< HEAD
   //**************************************************************************************8
   cout<<"Comiezo de cursorlist"<<endl;
   ofstream f13("CLnsert.txt");
@@ -245,6 +248,10 @@ int main(int argc, char *argv[]){
   f18.close();
 
   /*
+=======
+*/
+  
+>>>>>>> 88df29fe9bc9c784653173688986898f9fefa3c4
     // En el caso de que quisieramos utilizar otra implementación
     // SÓLO se tendría que cambiar esta línea.
     TDAList* lista = new DLCursorList(5);
@@ -289,7 +296,7 @@ int main(int argc, char *argv[]){
         }
     }
     delete lista;
-    */
+    
 
      
     return 0;
