@@ -32,11 +32,8 @@ bool DLCursorList::insert(Object* E, int pos) {
 	if(pos<0||pos>=capacity){
 		return false;
 	}
-	if(isFull()){
-		return false;
-	}
 	int neo= nextavail();
-	if(pos==0 && head==-1){
+	if(head==-1){
 		head=neo;
 		rows[head].prev=-1;
 		rows[head].next=-1;
@@ -44,16 +41,14 @@ bool DLCursorList::insert(Object* E, int pos) {
 	}else if(pos==0 && head!=-1){
 		rows[neo].prev=-1;
 		rows[neo].next=head;
+		rows[neo].data=E;
 		rows[head].prev=neo;
 		head=neo;
-		rows[neo].data=E;
 	}else{
 		int tmp = head;
-	
 		for (int i = 0; i < pos-1; i++){
 			tmp = rows[tmp].next;
 		}
-	
 		rows[neo].prev = tmp;
 		rows[neo].next = rows[tmp].next;
 		rows[neo].data = E;
@@ -68,12 +63,15 @@ bool DLCursorList::insert(Object* E, int pos) {
 
 int DLCursorList::indexOf(Object* E)const {
 	int tmp=head;
-	for (int i = 0; i < size; ++i){
+	for (int i = 0; i < capacity; i++){
+		if (tmp==-1){
+			continue;
+		}
 		if(rows[tmp].data->equals(E)){
 			return i;
-		}else{
-			tmp=rows[tmp].next;
 		}
+		tmp=rows[tmp].next;
+		
 	}
 	return -1;
 }
@@ -83,7 +81,7 @@ Object* DLCursorList::get(unsigned pos)const {
 		return NULL;
 	}
 	int tmp=head;
-	for (int i = 0; i < pos; ++i){
+	for (int i = 0; i < pos; i++){
 		tmp=rows[tmp].next;
 	}
 	return rows[tmp].data;

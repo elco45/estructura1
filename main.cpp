@@ -40,7 +40,7 @@ int main(int argc, char *argv[]){
   for (int i = 0; i < 1000; i++){
     random= rand()%1000;
     for (int j = 0; j < 1000; j++){
-      if (lista_random[j]=random){
+      if (lista_random[j]==random){
         existe=true;
         break;
       }
@@ -53,10 +53,9 @@ int main(int argc, char *argv[]){
     } 
   }
 
-
 //**********************************FSArrayList****************************************
   //funcion insert de FSArrayList
-  ofstream f1("FSInsert.txt");
+  ofstream f1("./Resultado/FSArrayList/FSInsert.txt");
   for (int i = 0; i < 1000; i++){ 
     inicio=clock(); 
     lista1->insert(new Integer(i),lista_random[i]);
@@ -68,7 +67,7 @@ int main(int argc, char *argv[]){
   f1.close();
 
   //funcion get de FSArrayList
-  ofstream f3("FSget.txt");
+  ofstream f3("./Resultado/FSArrayList/FSget.txt");
   for (int i = 0; i < 1000; i++){ 
     inicio=clock(); 
     lista1->get(lista_random[i]);
@@ -80,7 +79,7 @@ int main(int argc, char *argv[]){
   f3.close();
 
   //funcion indexof de FSArrayList
-  ofstream f4("FSInfex.txt");
+  ofstream f4("./Resultado/FSArrayList/FSInfex.txt");
   for (int i = 0; i < 1000; i++){ 
     inicio=clock(); 
     lista1->indexOf(new Integer(i));
@@ -92,7 +91,7 @@ int main(int argc, char *argv[]){
   f4.close();
 
    //funcion fisrt de FSArrayList
-  ofstream f5("FSFirst.txt");
+  ofstream f5("./Resultado/FSArrayList/FSFirst.txt");
   for (int i = 0; i < 1000; i++){ 
     inicio=clock(); 
     lista1->first();
@@ -104,7 +103,7 @@ int main(int argc, char *argv[]){
   f5.close();
 
   //funcion last de FSArrayList
-  ofstream f6("FSLast.txt");
+  ofstream f6("./Resultado/FSArrayList/FSLast.txt");
   for (int i = 0; i < 1000; i++){ 
     inicio=clock(); 
     lista1->last();
@@ -116,7 +115,7 @@ int main(int argc, char *argv[]){
   f6.close();
 
   //funcion remove de FSArrayList
-  ofstream f2("FSRemove.txt");
+  ofstream f2("./Resultado/FSArrayList/FSRemove.txt");
   for (int i = 0; i < 1000; i++){ 
     inicio=clock(); 
     lista1->erase(lista_random[i]);
@@ -129,7 +128,8 @@ int main(int argc, char *argv[]){
 
   //********************************LinkedList**********************************
    //funcion insert de LinkedList
-  ofstream f7("DLinsert.txt");
+ 
+  ofstream f7("./Resultado/DLLinkedList/DLinsert.txt");
   for (int i = 0; i < 1000; i++){ 
     inicio=clock(); 
     lista2->insert(new Integer(i),lista_random[i]);
@@ -141,7 +141,7 @@ int main(int argc, char *argv[]){
   f7.close();
 
    //funcion get de linkedlist
-  ofstream f9("DLget.txt");
+  ofstream f9("./Resultado/DLLinkedList/DLget.txt");
   for (int i = 0; i < 1000; i++){ 
     inicio=clock(); 
     lista2->get(lista_random[i]);
@@ -153,7 +153,7 @@ int main(int argc, char *argv[]){
   f9.close();
 
    //funcion indexof de linkedlist
-   ofstream f10("DLindex.txt");
+   ofstream f10("./Resultado/DLLinkedList/DLindex.txt");
   for (int i = 0; i < 1000; i++){ 
     inicio=clock(); 
     lista2->indexOf(new Integer(i));
@@ -163,9 +163,9 @@ int main(int argc, char *argv[]){
       f10<<tiempo<<"\n";
   }
   f10.close();
-
+  
    //funcion first de linkedlist
-   ofstream f11("DLfirst.txt");
+   ofstream f11("./Resultado/DLLinkedList/DLfirst.txt");
   for (int i = 0; i < 1000; i++){ 
     inicio=clock(); 
     lista2->first();
@@ -177,7 +177,7 @@ int main(int argc, char *argv[]){
   f11.close();
 
    //funcion last de linkedlist
-  ofstream f12("DLlast.txt");
+  ofstream f12("./Resultado/DLLinkedList/DLlast.txt");
   for (int i = 0; i < 1000; i++){ 
     inicio=clock(); 
     lista2->last();
@@ -189,7 +189,7 @@ int main(int argc, char *argv[]){
   f12.close();
 
   //funcion remove de linkedlist
-  ofstream f8("DLremove.txt");
+  ofstream f8("./Resultado/DLLinkedList/DLremove.txt");
   for (int i = 0; i < 1000; i++){ 
     inicio=clock();
     lista2->erase(lista_random[i]);
@@ -201,7 +201,8 @@ int main(int argc, char *argv[]){
   f8.close();
 
 //****************************************CursorList******************************
-  ofstream f13("CLinsert.txt");
+ 
+  ofstream f13("./Resultado/CursorList/CLinsert.txt");
   for (int i = 0; i < 1000; i++){ 
     inicio=clock(); 
     lista3->insert(new Integer(i),lista_random[i]);
@@ -211,9 +212,8 @@ int main(int argc, char *argv[]){
       f13<<tiempo<<"\n";
   }
   f13.close();
-
-   //funcion get de Cursorlist
-  ofstream f15("CLget.txt");
+  //funcion get de Cursorlist
+  ofstream f15("./Resultado/CursorList/CLget.txt");
   for (int i = 0; i < 1000; i++){ 
     inicio=clock(); 
     lista3->get(lista_random[i]);
@@ -225,7 +225,7 @@ int main(int argc, char *argv[]){
   f15.close();
 
   //funcion indexof de Cursorlist
-   ofstream f16("CLindex.txt");
+   ofstream f16("./Resultado/CursorList/CLindex.txt");
   for (int i = 0; i < 1000; i++){ 
     inicio=clock(); 
     lista3->indexOf(new Integer(i));
@@ -237,7 +237,7 @@ int main(int argc, char *argv[]){
   f16.close();
 
   //funcion first de Cursorlist
-   ofstream f17("CLfirst.txt");
+   ofstream f17("./Resultado/CursorList/CLfirst.txt");
   for (int i = 0; i < 1000; i++){ 
     inicio=clock(); 
     lista3->first();
@@ -249,7 +249,7 @@ int main(int argc, char *argv[]){
   f17.close();
 
    //funcion last de Cursorlist
-  ofstream f18("CLlast.txt");
+  ofstream f18("./Resultado/CursorList/CLlast.txt");
   for (int i = 0; i < 1000; i++){ 
     inicio=clock(); 
     lista3->last();
@@ -261,7 +261,7 @@ int main(int argc, char *argv[]){
   f18.close();
 
    //funcion remove de Cursorlist
-  ofstream f14("CLremove.txt");
+  ofstream f14("./Resultado/CursorList/CLremove.txt");
   for (int i = 0; i < 1000; i++){ 
     inicio=clock();
     lista3->erase(lista_random[i]);

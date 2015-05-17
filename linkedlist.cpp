@@ -26,39 +26,37 @@ LinkedList::~LinkedList(){
 */
 bool LinkedList::insert(Object* data, int pos) {
     // Si se desa meter en una posición inválida
-    if (pos < 0 )
+    if (pos < 0 || pos > size)
         return false; // Fracaso en esta Operación
-
     // Creación del Nodo que insertaremos en la lista
     DLLNode* neo = new DLLNode(data);
-
     if (!head) // La lista está vacía
         head = neo;
     else { // La Lista tiene elementos
         if (pos == 0){ // Desea insertar al principio de la lista
-            // Enlace de neo a la lista
-            head->setPrev(neo);
-            neo->setNext(head);
-            // Actualizar la cabeza
-            head = neo;
-        }else if (pos > 0 && pos < size){ // Desea Insertar en medio
-            DLLNode* tmp = head;
-            // Recorrer hasta la posición anterior a la que deseamos insertar
-            for (int i=1; i<pos; i++)
-               tmp = tmp->getNext();
-            // Enlazar el Nodo neo
-            neo->setPrev(tmp);
-            neo->setNext(tmp->getNext());
-            tmp->getNext()->setPrev(neo);
-            tmp->setNext(neo);
-        }else { // Desea insertar al final
-            DLLNode* tmp = head;
-            // Recorrer la Lista hasta el final
-            for (int i=1; i<pos; i++)
-               tmp = tmp->getNext();
-            // Enlazar el Nodo neo
-            tmp->setNext(neo);
-            neo->setPrev(tmp);
+        // Enlace de neo a la lista
+        head->setPrev(neo);
+        neo->setNext(head);
+        // Actualizar la cabeza
+        head = neo;
+    }else if (pos > 0 && pos < size){ // Desea Insertar en medio
+        DLLNode* tmp = head;
+        // Recorrer hasta la posición anterior a la que deseamos insertar
+        for (int i=1; i<pos; i++)
+            tmp = tmp->getNext();
+        // Enlazar el Nodo neo
+        neo->setPrev(tmp);
+        neo->setNext(tmp->getNext());
+        tmp->getNext()->setPrev(neo);
+        tmp->setNext(neo);
+    }else { // Desea insertar al final
+        DLLNode* tmp = head;
+        // Recorrer la Lista hasta el final
+        for (int i=1; i<pos; i++)
+            tmp = tmp->getNext();
+        // Enlazar el Nodo neo
+        tmp->setNext(neo);
+        neo->setPrev(tmp);
         }
     }
     // Incremento del tamaño
