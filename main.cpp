@@ -23,31 +23,26 @@ using namespace std;
 */
 
 
-int menu();
+//int menu();
 
 int main(int argc, char *argv[]){
-  /**ofstream f13("ClInsert.txt");
-  ofstream f14("Clremove.txt");
-  ofstream f15("Clget.txt");
-  ofstream f16("ClIndex.txt");
-  ofstream f17("CLfirst.txt");
-  ofstream f18("CLlast.txt");
-  **/
 
-/*
+
   double tiempo;
+  int pos;
   time_t inicio,fin;
- // srand(time(0));
-
+  srand(time(0));
+  int valor=1000;
   TDAList* lista1 = new FSArrayList(5);
   TDAList* lista2 = new LinkedList();
   TDAList* lista3 = new DLCursorList(5);
   //funcion insert de FSArrayList
-
+  
   ofstream f1("FSInsert.txt");
-  for (int i = 0; i <5; ++i){ 
+  for (int i = 0; i <valor; ++i){ 
     inicio=clock(); 
-    lista1->insert(new Integer(i),i);
+    pos=rand()%valor; 
+    lista1->insert(new Integer(i),pos);
     fin=clock();
     tiempo=(double)(fin-inicio)/(double)CLOCKS_PER_SEC;
     f1<<tiempo<<"\n";
@@ -56,9 +51,10 @@ int main(int argc, char *argv[]){
   f1.close();
   ofstream f3("FSget.txt");
    //funcion get de FSArrayList
-  for (int i = 0; i <5; ++i){ 
+  for (int i = 0; i <valor; ++i){ 
+    pos=rand()%valor; 
     inicio=clock(); 
-    lista1->get(i);
+    lista1->get(pos);
     fin=clock();
     tiempo=(double)(fin-inicio)/(double)CLOCKS_PER_SEC;
     f3<<tiempo<<"\n";
@@ -67,9 +63,10 @@ int main(int argc, char *argv[]){
   f3.close();
   ofstream f4("FSInfex.txt");
    //funcion indexof de FSArrayList
-  for (int i = 0; i <5; ++i){ 
+  for (int i = 0; i <valor; ++i){ 
+    pos=rand()%valor; 
     inicio=clock(); 
-    lista1->indexOf(new Integer(i));
+    lista1->indexOf(new Integer(pos));
     fin=clock();
     tiempo=(double)(fin-inicio)/(double)CLOCKS_PER_SEC;
     f4<<tiempo<<"\n";
@@ -78,7 +75,7 @@ int main(int argc, char *argv[]){
   f4.close();
   ofstream f5("FSFirst.txt");
    //funcion fisrt de FSArrayList
-  for (int i = 0; i <5; ++i){ 
+  for (int i = 0; i <valor; ++i){ 
     inicio=clock(); 
     lista1->first();
     fin=clock();
@@ -89,7 +86,7 @@ int main(int argc, char *argv[]){
   f5.close();
   ofstream f6("FSLast.txt");
    //funcion last de FSArrayList
-  for (int i = 0; i <5; ++i){ 
+  for (int i = 0; i <valor; ++i){ 
     inicio=clock(); 
     lista1->last();
     fin=clock();
@@ -100,9 +97,10 @@ int main(int argc, char *argv[]){
   f6.close();
   ofstream f2("FSRemove.txt");
    //funcion remove de FSArrayList
-  for (int i = 0; i <5; ++i){ 
+  for (int i = 0; i <valor; ++i){ 
+    pos=rand()%valor; 
     inicio=clock(); 
-    lista1->erase(0);
+    lista1->erase(pos);
     fin=clock();
     tiempo=(double)(fin-inicio)/(double)CLOCKS_PER_SEC;
     f2<<tiempo<<"\n";
@@ -112,9 +110,10 @@ int main(int argc, char *argv[]){
   //************************************************************
    //funcion insert de LinkedList
   ofstream f7("DLinsert.txt");
-  for (int i = 0; i <5; ++i){ 
+  for (int i = 0; i <valor; ++i){ 
+    pos=rand()%valor; 
     inicio=clock(); 
-    lista2->insert(new Integer(i),i);
+    lista2->insert(new Integer(i),pos);
     fin=clock();
     tiempo=(double)(fin-inicio)/(double)CLOCKS_PER_SEC;
     f7<<tiempo<<"\n";
@@ -123,9 +122,10 @@ int main(int argc, char *argv[]){
   f7.close();
    //funcion get de linkedlist
   ofstream f9("DLget.txt");
-  for (int i = 0; i <5; ++i){ 
+  for (int i = 0; i <valor; ++i){ 
+    pos=rand()%valor; 
     inicio=clock(); 
-    lista2->get(i);
+    lista2->get(pos);
     fin=clock();
     tiempo=(double)(fin-inicio)/(double)CLOCKS_PER_SEC;
     f9<<tiempo<<"\n";
@@ -134,9 +134,10 @@ int main(int argc, char *argv[]){
   f9.close();
    //funcion indexof de linkedlist
    ofstream f10("DLindex.txt");
-  for (int i = 0; i <5; ++i){ 
+  for (int i = 0; i <valor; ++i){ 
+    pos=rand()%valor; 
     inicio=clock(); 
-    lista2->indexOf(new Integer(i));
+    lista2->indexOf(new Integer(pos));
     fin=clock();
     tiempo=(double)(fin-inicio)/(double)CLOCKS_PER_SEC;
     f10<<tiempo<<"\n";
@@ -145,7 +146,8 @@ int main(int argc, char *argv[]){
  
    //funcion fisrt de linkedlist
    ofstream f11("DLfirst.txt");
-  for (int i = 0; i <5; ++i){ 
+  for (int i = 0; i <valor; ++i){ 
+    //pos=rand()%5; 
     inicio=clock(); 
     lista2->first();
     fin=clock();
@@ -156,9 +158,8 @@ int main(int argc, char *argv[]){
 
    //funcion last de linkedlist
   ofstream f12("DLlast.txt");
-  for (int i = 0; i <5; ++i){ 
+  for (int i = 0; i <valor; ++i){ 
     inicio=clock(); 
-;
     Object* objeto=lista2->last();
     fin=clock();
     tiempo=(double)(fin-inicio)/(double)CLOCKS_PER_SEC;
@@ -168,21 +169,23 @@ int main(int argc, char *argv[]){
   f12.close();
    //funcion remove de linkedlist
   ofstream f8("DLremove.txt");
-  for (int i = 0; i <5; ++i){ 
+  for (int i = 0; i <valor; ++i){
+    pos=rand()%valor;  
     inicio=clock();
-    lista2->erase(0);
+    lista2->erase(pos);
     fin=clock();
     tiempo=(double)(fin-inicio)/(double)CLOCKS_PER_SEC;
     f8<<tiempo<<"\n";
   }
   f8.close();
-<<<<<<< HEAD
+
   //**************************************************************************************8
   cout<<"Comiezo de cursorlist"<<endl;
   ofstream f13("CLnsert.txt");
-  for (int i = 0; i <5; i++){ 
+  for (int i = 0; i <valor; i++){
+    pos=rand()%valor;  
     inicio=clock(); 
-    lista3->insert(new Integer(i),i);
+    lista3->insert(new Integer(i),pos);
     cout<<"supaso insert"<<endl;
     fin=clock();
     tiempo=(double)(fin-inicio)/(double)CLOCKS_PER_SEC;
@@ -192,9 +195,10 @@ int main(int argc, char *argv[]){
   f13.close();
   ofstream f14("CLget.txt");
    //funcion get de cursorlist
-  for (int i = 0; i <5; i++){ 
+  for (int i = 0; i <valor; i++){ 
+    pos=rand()%valor; 
     inicio=clock(); 
-    lista3->get(i);
+    lista3->get(pos);
     fin=clock();
     tiempo=(double)(fin-inicio)/(double)CLOCKS_PER_SEC;
     f14<<tiempo<<"\n";
@@ -203,9 +207,10 @@ int main(int argc, char *argv[]){
   f14.close();
   ofstream f15("CLInfex.txt");
    //funcion indexof de cursorlist
-  for (int i = 0; i <5; ++i){ 
+  for (int i = 0; i <valor; ++i){
+    pos=rand()%valor;  
     inicio=clock(); 
-    lista3->indexOf(new Integer(i));
+    lista3->indexOf(new Integer(pos));
     fin=clock();
     tiempo=(double)(fin-inicio)/(double)CLOCKS_PER_SEC;
     f15<<tiempo<<"\n";
@@ -214,7 +219,7 @@ int main(int argc, char *argv[]){
   f15.close();
   ofstream f16("CLFirst.txt");
    //funcion fisrt de cursorlist
-  for (int i = 0; i <5; ++i){ 
+  for (int i = 0; i <valor; ++i){ 
     inicio=clock(); 
     lista3->first();
     fin=clock();
@@ -225,7 +230,7 @@ int main(int argc, char *argv[]){
   f16.close();
   ofstream f17("CLLast.txt");
    //funcion last de cursorlist
-  for (int i = 0; i <5; ++i){ 
+  for (int i = 0; i <valor; ++i){ 
     inicio=clock(); 
     lista3->last();
     fin=clock();
@@ -236,9 +241,10 @@ int main(int argc, char *argv[]){
   f17.close();
   ofstream f18("CLRemove.txt");
    //funcion remove de cursorlist
-  for (int i = 0; i <5; ++i){ 
+  for (int i = 0; i <valor; ++i){ 
+    pos=rand()%valor;  
     inicio=clock();
-    lista3->erase(0);
+    lista3->erase(pos);
     cout<<"subpaso"<<endl;
     fin=clock();
     tiempo=(double)(fin-inicio)/(double)CLOCKS_PER_SEC;
@@ -247,14 +253,11 @@ int main(int argc, char *argv[]){
  
   f18.close();
 
-  /*
-=======
-*/
   
->>>>>>> 88df29fe9bc9c784653173688986898f9fefa3c4
+
     // En el caso de que quisieramos utilizar otra implementación
     // SÓLO se tendría que cambiar esta línea.
-    TDAList* lista = new DLCursorList(5);
+   /** TDAList* lista = new DLCursorList(5);
     Integer* intTemp;
     int val, pos;
     bool flag = true;
@@ -296,13 +299,12 @@ int main(int argc, char *argv[]){
         }
     }
     delete lista;
-    
+    **/
 
      
     return 0;
 }
-int menu()
-{
+/*int menu(){
     cout << "1. Insertar "  << endl;
     cout << "2. Borrar "  << endl;
     cout << "3. Listar " << endl;
@@ -313,3 +315,4 @@ int menu()
     cin >> opcion;
     return opcion;
 }
+*/
