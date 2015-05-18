@@ -1,8 +1,8 @@
 exe: main.o object.o integer.o tdalist.o dllnode.o fsarraylist.o linkedlist.o dlcursorlist.o 
-	g++ main.o object.o integer.o tdalist.o dllnode.o fsarraylist.o linkedlist.o dlcursorlist.o 
+	g++ main.o object.o integer.o tdalist.o dllnode.o fsarraylist.o linkedlist.o dlcursorlist.o -o exe
 
 main.o: main.cpp integer.h tdalist.h fsarraylist.h linkedlist.h dlcursorlist.h
-	g++ -c main.cpp
+	g++ -c main.cpp 
 
 dlcursorlist.o: dlcursorlist.cpp dlcursorlist.h tdalist.h object.h
 	g++ -c dlcursorlist.cpp
