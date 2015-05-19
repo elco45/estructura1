@@ -21,7 +21,7 @@ bool FSArrayList::insert(Object* E,int p){
 		return false;
 	}else{
 		if(p >=size ){
-			data[p] = E;
+			data[size] = E;
 			size++;
 		}else{
 			for (int i = size; i > p; i--){
