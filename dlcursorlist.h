@@ -8,8 +8,8 @@
 class DLCursorList:public TDAList{
 	struct Row{
 		int prev;
-        int next;
-        Object* data;
+        	int next;
+        	Object* data;
 	};
 	int head,capacity;
 	Row* rows;
